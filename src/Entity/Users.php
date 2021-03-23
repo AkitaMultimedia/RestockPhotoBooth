@@ -68,7 +68,7 @@ class Users implements UserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-
+        dd($roles);
         // guarantee every user at least has ROLE_USER
         if (empty($roles)) {
             array_push($roles,'ROLE_USER');

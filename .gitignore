@@ -11,7 +11,7 @@
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
-/config/packages/doctrine.yaml
+# /config/packages/doctrine.yaml
 .phpunit
 .phpunit.result.cache
 /phpunit.xml

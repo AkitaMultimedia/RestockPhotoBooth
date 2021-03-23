@@ -4454,7 +4454,6 @@
     </service>
     <service id="doctrine.dbal.default_connection" class="Doctrine\DBAL\Connection" public="true">
       <argument type="collection">
-        <argument key="driver">pdo_mysql</argument>
         <argument key="charset">utf8mb4</argument>
         <argument key="unix_socket">/Applications/MAMP/tmp/mysql/mysql.sock</argument>
         <argument key="url">%env(resolve:DATABASE_URL)%</argument>
@@ -4462,6 +4461,7 @@
         <argument key="port">null</argument>
         <argument key="user">root</argument>
         <argument key="password">null</argument>
+        <argument key="driver">pdo_mysql</argument>
         <argument key="driverOptions" type="collection"/>
         <argument key="serverVersion" type="string">5.7</argument>
         <argument key="defaultTableOptions" type="collection">

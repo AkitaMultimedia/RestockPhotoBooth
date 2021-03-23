@@ -1,0 +1,26 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block content %}
+
+    <p class="title">IMAGES FOR LOT {{ lot_data.lot }}</p>
+
+    <div class="lot_image_wrapper">
+      
+        {% for p in 0..9 %}
+   
+            {% if lot_data.photos[p] != "" %}
+            <div class="lot_image_infos">
+                <div>{{ lot_data.photos[p] }}</div><div><a href="{{ path('admin_delete_photo', {'id': lot_data.id, 'name': lot_data.photos[p], 'state': state }) }}" class="btn btn-delete">Delete</a></div>
+            </div>
+            <div class="lot_image_holder">
+                <img style="lot_image" src="{{ photos[p] }}" width="100%">
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+        <a href=" {{ path('admin_view_lots', {'po_number': lot_data.po, 'state': state}) }} " class="btn">Back</a> 
+{% endblock %}

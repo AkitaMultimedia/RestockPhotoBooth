@@ -1,0 +1,50 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block content %}
+
+     <p class="title">LOTS FOR PO{{ po }}</p>
+
+    {% if lot_data is empty  %}
+
+        <div class="settings_container">
+            <p>No lots for PO {{ po }}</p>
+        </div>
+
+    {% else %}
+        <table class="table" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr>
+                <td>PO</td>
+                <td>Format</td>
+                <td>Weight</td>
+                <td>Pictures</td>
+                </tr>
+            </thead>
+            <tbody>           
+                {% for lot in lot_data %}
+                    <tr>
+                    <td>{{ lot.lot }}</td>
+                    <td>{{ lot.format }}</td>
+                    <td>{{ lot.weight }}</td>
+                    <td>
+                    {% set nb_photos = 0 %}
+                    {% for photo in lot.photos %}
+                        {%- if photo %}
+                            {%- set nb_photos = nb_photos + 1 -%}
+                        {%- endif %}
+                    {% endfor %}
+                        <span class="nb_pictures">{{ nb_photos }}</span>
+                        <a href="{{ path('admin_view_photos', {'lot': lot.lot, 'state': state }) }}" class="btn btn-table-left">View photos</a>                                    
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+{% endblock %}
+
+{% block footer %}
+        <a href=" {{ path('admin_polist', {'active': state}) }} " class="btn btn-back">Back</a>
+{% endblock %}
+

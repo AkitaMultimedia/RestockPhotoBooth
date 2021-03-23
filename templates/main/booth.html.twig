@@ -1,0 +1,159 @@
+{% extends 'main/index.html.twig' %}
+
+{% block title %}Booth App
+{% endblock %}
+
+{% block content %}
+
+	<div id="scan_step" class="booth_wrapper">
+		<div class="flex_column_centered">
+			<input id='scan_file_input' type="file" accept="image/*" capture="environment">
+			<button class="btn btn-giant scan-type" id="btn_scancode_interne">Scan barcode</button>
+			{# <a class="btn btn-giant scan-type" id="btn_scancode_externe" href="zxing://scan/?ret=https://restock.akitamultimedia.com/booth/{CODE}">Scan barcode</a> #}
+			<a class="btn btn-giant scan-type" id="btn_scancode_externe" href="zxing://scan/?ret=/booth/scan/{CODE}">Scan barcode</a>
+									            {# <button class="btn btn-giant scan-type" id="btn_scancode_externe2">Scan barcode 2</button> #}
+									          
+
+			{% if scan != "null" %}
+				<div id="scanner-container" class="scaned">
+					{{ scan }}
+				</div>
+			{% else %}
+				<div id="scanner-container">
+					No code scaned
+				</div>
+			{% endif %}
+
+
+		</div>
+	</div>
+
+	<div id="picture_step" class="booth_wrapper">
+		<div class="flex_column_centered">
+			<input type="file" id="camera" accept="image/*" capture="camera"/>
+			<button class="btn btn-giant" id="shutter">Take main picture</button>
+			<div id="number_of_pictures">Number of additional pictures taken so far : 0</div>
+			<div id="showcase"></div>
+		</div>
+	</div>
+
+	<div id="lot_format_step" class="booth_wrapper">
+		<div class="flex_column_centered">
+			<div class="number">
+				<h2>Box</h2>
+				<button class="btn minus lot_format_box">-</button>
+				<input id="lot_format_box" class="lot_format" type="text" value="0"/>
+				<button class="btn plus lot_format_box">+</button>
+			</div>
+			<div class="number">
+				<h2>Pallet</h2>
+				<button class="btn minus lot_format_pallet">-</button>
+				<input id="lot_format_pallet" class="lot_format" type="text" value="0"/>
+				<button class="btn plus lot_format_pallet">+</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="size_page" class="booth_wrapper">
+		<div class="flex_wrapper">
+			<div class="flex_column_centered">
+				<div class="flex_column_left">
+					<h2 id="size_current_item">Box number</h2>
+					<div class="fields_wrapper">
+						<div class="size_field">
+							<p>Length</p>
+							<div id="length" class="value_field">0</div>
+							<p class="field_detail">inches</p>
+						</div>
+						<div class="size_field">
+							<p>Wide</p>
+							<div id="wide" class="value_field">0</div>
+							<p class="field_detail">inches</p>
+						</div>
+						<div class="size_field">
+							<p>Height</p>
+							<div id="height" class="value_field">0</div>
+							<p id="size_height_detail" class="field_detail"></p>
+						</div>
+					</div>
+					<div id="favorites_wrapper">
+						<p>Favorites:
+							<select name="favorites_select" id="favorites_select" class="reg_fields">
+								<option value="0">Select...</option>
+							</select>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="flex_column_centered">
+				{% include 'main/numeric_pad.html.twig' %}
+			</div>
+
+		</div>
+
+	</div>
+
+	<div id="weight_page" class="booth_wrapper">
+		<div class="flex_wrapper">
+			<div class="flex_column_centered">
+				<div class="flex_column_left">
+					<div>
+						<p>Suggestion for weight:
+							<span id="weight_suggestion">0</span>
+						</p>
+						<button id="use_suggested_weight" class="btn btn-back">Use</button>
+					</div>
+					<div class="fields_wrapper">
+						<div class="size_field">
+							<p>Actual weight:</p>
+							<div id="weight" class="value_field">0</div>
+							<p id="size_height_detail" class="field_detail"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="flex_column_centered">
+				{% include 'main/numeric_pad.html.twig' %}
+			</div>
+		</div>
+	</div>
+
+	<div id="final_confirmation_page" class="booth_wrapper">
+		<div class="flex_column_centered">
+			<div>
+				<h2>Current lot format:
+					<span id="final_format"></span>
+				</h2>
+				<h2>Current lot weight:
+					<span id="final_weight"></span>
+				</h2>
+			</div>
+			<div id="final_showcase"></div>
+		</div>
+	</div>
+
+	<div id="saving_confirmation" class="booth_wrapper">
+		<div class="flex_column_centered">
+			<h1>Saving data...</h2>
+		</div>
+	</div>
+
+{% endblock %}
+
+{% block footer %}
+	<a href="#" dest="back" class="btn btn-back">Back</a>
+	<a href="#" id="discard_button" dest="discard" class="btn btn-back">Discard</a>
+	<a href="#" id="confirm_button" dest="confirm" class="btn btn-back">Confirm</a>
+{% endblock %}
+
+{% block javascripts %}
+	<script src=" {{ asset("js/booth/quagga2.min.js") }} "></script>
+	<script src=" {{ asset("js/booth/barcode.js") }} "></script>
+	<script src=" {{ asset("js/booth/scancode.js") }} "></script>
+	<script src=" {{ asset("js/booth/picture.js") }} "></script>
+	<script src=" {{ asset("js/booth/lot_size_weight.js") }} "></script>
+	<script src=" {{ asset("js/booth/numeric_pad.js") }} "></script>
+	<script src=" {{ asset("js/booth/upload_data.js") }} "></script>
+	<script src=" {{ asset("js/booth/user_settings.js") }} "></script>
+	<script src=" {{ asset("js/booth/booth.js") }} "></script>
+{% endblock %}

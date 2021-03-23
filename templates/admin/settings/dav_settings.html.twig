@@ -1,0 +1,26 @@
+<p class="title">Webdav Infos</p>
+    <table class="table" cellspacing="0" cellpadding="0">
+    <thead>
+        <tr>
+            <td>Key</td>
+            <td>Value</td>
+            <td>Actions</td>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td>Username: </td>
+                <td>{{ dav_user_name }}</td>
+                <td>
+                    <a href=" {{ path("settings_dav_change_configuration", {'name': 'dav_user_name'} ) }} " class="btn btn-table-left">Modify</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td>&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;</td>
+                <td>
+                    <a href=" {{ path("settings_dav_change_configuration", {'name': 'dav_password'} ) }} " class="btn btn-table-left">Modify</a>
+                </td>
+            </tr>
+    </tbody>
+    </table>

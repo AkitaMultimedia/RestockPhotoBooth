@@ -1,0 +1,47 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block content %}
+
+<p class="title">Add of modify boxes presets</p>
+
+ {{ form_start(boxForm) }}
+  <table class="form_table">
+
+    <tr>
+        <td>{{ form_label(boxForm.name) }}</td>
+        <td>
+        {{ form_widget(boxForm.name) }}
+        </td>
+    </tr>
+    <tr>
+        <td>{{ form_label(boxForm.length) }}</td>
+        <td>
+        {{ form_widget(boxForm.length) }}
+        </td>
+    </tr>
+    <tr>
+        <td>{{ form_label(boxForm.wide) }}</td>
+        <td>
+        {{ form_widget(boxForm.wide) }}
+        </td>
+    </tr>
+    <tr>
+        <td>{{ form_label(boxForm.height) }}</td>
+        <td>
+        {{ form_widget(boxForm.height) }}
+        </td>
+    </tr>   
+  
+  </table>
+  
+ {% endblock %}
+
+  {% block footer %}
+    <a href=" {{ path('settings_menu') }} " class="btn btn-back">Back</a>
+    {{ form_row(boxForm.submit, {
+        label: 'Confirm',
+        'attr': {'class': 'btn btn-option'}
+    }) }}  
+    {{ form_end(boxForm) }}
+{% endblock %}
+

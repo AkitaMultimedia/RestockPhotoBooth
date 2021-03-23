@@ -1,0 +1,40 @@
+ <p class="title">Email addresses for done PO:</p>
+
+ {% if emails is empty  %}
+
+    <div class="settings_container">
+        <p>No emails are registered</p>
+    </div>
+
+{% else %}
+
+    <table class="table" cellspacing="0" cellpadding="0">
+    <thead>
+        <tr>
+            <td>Email</td>
+            <td>Active</td>
+            <td>Actions</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for email in emails %}
+            <tr>
+                <td>{{ email.email }}</td>
+                <td>
+                    {% if email.active == true %}
+                        Yes
+                    {% else %}
+                        No
+                    {% endif %}
+                </td>
+                <td>
+                    <a href=" {{ path("settings_modify_email", {'id': email.id }) }} " class="btn btn-table-left">Modify</a>
+                    <a href=" {{ path("settings_delete_email", {'id': email.id }) }} " class="btn btn-table-left">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+
+{% endif %}
+<a href=" {{ path("settings_add_email") }} " class="btn btn-table-left">Add email</a>

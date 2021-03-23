@@ -1,0 +1,14 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block content %}
+    <div class="flex_column_centered">
+        <a href=" {{ path('admin_polist', {'active':1}) }} " class="btn btn-option">Active PO</a>
+        <a href=" {{ path('admin_polist', {'active':0}) }} " class="btn btn-option">Archived PO</a>
+        <a href=" {{ path('settings_menu') }} " class="btn btn-option">Settings</a>
+    </div>
+ {% endblock %}
+
+ {% block footer %}
+    <a href=" {{ path('app_home') }} " class="btn btn-back">Back</a>
+{% endblock %}
+

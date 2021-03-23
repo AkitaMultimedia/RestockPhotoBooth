@@ -1,0 +1,57 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block header %}
+    <div class="header_left">ADMIN</div>
+    <div class="header_right">Register User</div>
+{% endblock %}
+
+{% block content %}
+   
+    <p class="title">Add of modify user</p>
+
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+  {{ form_start(registrationForm) }}
+    <table class="form_table">
+   
+    <tr>
+        <td>{{ form_label(registrationForm.username) }}</td>
+        <td>
+        {{ form_widget(registrationForm.username) }}
+        </td>
+    </tr>
+    <tr>
+        <td>{{ form_label(registrationForm.roles) }}</td>
+        <td>
+        {{ form_widget(registrationForm.roles) }}
+        </td>
+    </tr>
+    <tr>
+        <td>{{ form_label(registrationForm.email) }}</td>
+        <td>
+        {{ form_widget(registrationForm.email) }}
+        </td>
+    </tr>
+    <tr>
+        <td>{{ form_label(registrationForm.password) }}</td>
+        <td>
+        {{ form_widget(registrationForm.password) }}
+        </td>
+    </tr>
+    </table>
+               
+ 
+{% endblock %}
+
+{% block footer %}
+    <a href=" {{ path('settings_menu') }} " class="btn btn-back">Back</a>
+    {{ form_row(registrationForm.submit, {
+        label: 'Confirm',
+        'attr': {'class': 'btn btn-option'}
+    }) }}  
+    {{ form_end(registrationForm) }}
+{% endblock %}

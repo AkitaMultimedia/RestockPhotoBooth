@@ -1,0 +1,112 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: lightgray;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    height: 100vh;
+    width: 100vw;
+    /*
+    height: 100%;
+   
+    overscroll-behavior-y: contain;
+    overscroll-behavior-x: contain;
+     */
+    position: fixed;
+}
+
+.container {
+    width: 100%;
+    position: fixed;
+    top: 40px;
+    bottom: 45px;
+    left: 0;
+    right: 0;
+}
+
+.header {
+    background-color: #476a30;
+    color: white;
+    border-bottom: 5px solid #000;
+    font-size: 18px;
+    padding: 2px 10px 0;
+    width: 100%;
+    height: 40px;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    flex-wrap: wrap;
+    z-index: 1000;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.footer {
+    position: fixed;
+    width: 100%;
+    height: 45px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0 10px;
+    background-color: dimgray;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    flex-wrap: wrap;
+    box-shadow: 0 -3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.vue_wrapper {
+    height: 100%;
+    min-height: 100%;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.footer-align-right {
+    /* Si un seul élément dans le footer, et qu'il doit être à gauche */
+    justify-content: flex-end;
+}
+
+.flex_column_centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    min-height: 100%;
+}
+
+.flex_wrapper {
+    display: flex;
+    min-height: 100%;
+    justify-content: space-around;
+}
+
+@media screen and (orientation:portrait) {
+    .flex_wrapper {
+        flex-direction: column;
+    }
+}
+
+@media screen and (orientation:landscape) {
+    .flex_wrapper {
+        flex-direction: row;
+    }
+}
+
+p {
+    margin: 5px 0;
+}
+
+#version {
+    text-align: center;
+    margin: 10px 0px;
+}

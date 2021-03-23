@@ -1,0 +1,40 @@
+<p class="title">Users:</p>
+
+{% if users is empty  %}
+
+    <div class="settings_container">
+        <p>No users are registered</p>
+    </div>
+
+{% else %}
+
+    <table class="table" cellspacing="0" cellpadding="0">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Roles</td>
+            <td>Actions</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>
+                    {% if user.roles[0] == "ROLE_USER" %}
+                        User
+                    {% elseif user.roles[0] == "ROLE_ADMIN" %}
+                        Admin
+                    {% endif %}                              
+                </td>
+                <td>
+                    <a href=" {{ path("admin_modify_user", {'id': user.id }) }} " class="btn btn-table-left">Modify</a>
+                    <a href=" {{ path("admin_delete_user", {'id': user.id }) }} " class="btn btn-table-left">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+{% endif %}
+
+<a href=" {{ path("admin_add_user") }} " class="btn btn-table-left">Add user</a>

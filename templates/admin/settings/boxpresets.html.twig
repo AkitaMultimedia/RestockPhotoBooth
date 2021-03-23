@@ -1,0 +1,37 @@
+<p class="title">Box Size Presets:</p>
+{% if box_presets is empty  %}
+
+    <div class="settings_container">
+        <p>No box size presets are registered</p>
+    </div>
+
+{% else %}
+
+    <table class="table" cellspacing="0" cellpadding="0">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Length</td>
+            <td>Wide</td>
+            <td>Height</td>
+            <td>Actions</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for box in box_presets %}
+            <tr>
+                <td>{{ box.name }}</td>
+                <td>{{ box.length }}</td>
+                <td>{{ box.wide }}</td>
+                <td>{{ box.height }}</td>
+                <td>
+                    <a href=" {{ path("settings_modify_box", {'id': box.id }) }} " class="btn btn-table-left">Modify</a>
+                    <a href=" {{ path("settings_delete_box", {'id': box.id }) }} " class="btn btn-table-left">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+
+{% endif %}
+<a href=" {{ path("settings_add_box") }} " class="btn btn-table-left">Add boxes</a>

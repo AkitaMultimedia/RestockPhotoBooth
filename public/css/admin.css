@@ -1,0 +1,153 @@
+.lots_container,
+.settings_container {
+    padding: 10px;
+    background-color: white;
+    border: 1px solid black;
+    margin-bottom: 5px;
+}
+
+.lots_infos {
+    width: 15%;
+}
+
+.lots_pictures {
+    width: 70%;
+}
+
+.lots_buttons {
+    width: 10%;
+}
+
+.lots_pictures img {
+    height: 100px;
+    width: auto;
+    margin: 0 10px;
+}
+
+.table {
+    background-color: rgba(255, 255, 255, 0.8);
+    /* border: 1px solid #AAAAAA; */
+    border-radius: 5px;
+    width: 100%;
+    table-layout: auto;
+    margin: 15px 0;
+    break-after: always;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
+}
+
+.table thead tr {
+    padding: 10px 0;
+}
+
+.table thead tr td {
+    padding: 10px 5px;
+    font-weight: bold;
+    border-bottom: 2px solid #343434;
+}
+
+.table tbody tr td {
+    padding: 4px 5px;
+}
+
+.table tbody tr:first-child td {
+    padding: 8px 5px 5px;
+}
+
+.table tbody tr:last-child td {
+    padding: 5px 5px 8px;
+}
+
+.table tr:nth-child(even) {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.btn-table-left {
+    min-width: 90px;
+    margin-left: 0px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.table .btn-table-left {
+    margin-top: 1px;
+    margin-bottom: 2px;
+    background-color: #c5e2b3;
+    padding: 4px 6px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+    font-weight: normal;
+}
+
+.table img {
+    width: 50px;
+    height: auto;
+}
+
+.title {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.user_favorites,
+#admin_settings_scan_method input[type='radio'] {
+    -ms-transform: scale(1.4);
+    /* IE */
+    -moz-transform: scale(1.4);
+    /* FF */
+    -webkit-transform: scale(1.4);
+    /* Safari and Chrome */
+    -o-transform: scale(1.4);
+    /* Opera */
+    transform: scale(1.4);
+    padding: 0;
+    margin: 0;
+}
+
+#admin_settings_scan_method {
+    margin-bottom: 12px;
+}
+
+#admin_settings_scan_method input[type='radio'] {
+    margin-right: 5px;
+    margin-bottom: 2px;
+    height: 24px;
+}
+
+.form_table input[type=text],
+.form_table input[type=email],
+.form_table input[type=password] {
+    width: 200px;
+    font-size: 16px;
+    height: 30px;
+    text-align: left;
+    padding: 0 3px;
+}
+
+.form_table tr td:first-of-type {
+    padding-right: 15px;
+}
+
+.nb_pictures {
+    margin-right: 20px;
+}
+
+.lot_image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+.lot_image_infos {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lot_image_holder {
+    max-width: 100%;
+    height: auto;
+}

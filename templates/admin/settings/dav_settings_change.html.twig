@@ -1,0 +1,30 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block content %}
+
+    <p class="title">Change configuration</p>
+
+    {{ form_start(configForm) }}
+
+    <table class="form_table">
+
+        <tr>
+            <td>{{ form_widget(configForm.name) }}</td>
+            <td>
+            {{ form_widget(configForm.value) }}
+            </td>
+        </tr>
+
+    </table>
+  
+{% endblock %}
+
+{% block footer %}
+    <a href=" {{ path('settings_menu') }} " class="btn btn-back">Back</a>
+    {{ form_row(configForm.submit, {
+        label: 'Confirm',
+        'attr': {'class': 'btn btn-option'}
+    }) }}  
+    {{ form_end(configForm) }}
+{% endblock %}
+

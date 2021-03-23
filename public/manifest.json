@@ -1,0 +1,9 @@
+{
+    "name": "Restock App 51a",
+    "short_name": "Restock App",
+    "theme_color": "#476a30",
+    "background_color": "#d3d3d3",
+    "display": "standalone",
+    "orientation": "landscape",
+    "start_url": "/"
+}

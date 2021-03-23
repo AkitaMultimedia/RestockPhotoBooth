@@ -1,0 +1,64 @@
+{% extends 'main/index.html.twig' %}
+
+{% block title %}Booth App Settings{% endblock %}
+
+       
+{% block stylesheets %}
+    <link rel="stylesheet" href=" {{ asset("css/admin.css")}} ">
+{% endblock %}
+
+{% block header %}
+    <div id="lot_number"></div>
+    <div id="vue_name">Settings</div>
+{% endblock %}
+
+{% block content %}  
+
+    <p class="title">Box Size Presets</p>
+
+    {% if box_presets is empty  %}
+
+        <div class="settings_container">
+            <p>No box size presets are registered</p>
+        </div>
+
+    {% else %}
+
+        <table class="table" cellspacing="0" cellpadding="0">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Width</td>
+                <td>Wide</td>
+                <td>Height</td>
+                <td>Favorites</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for box in box_presets %}
+                <tr>
+                    <td>{{ box.name }}</td>
+                    <td>{{ box.length }}</td>
+                    <td>{{ box.wide }}</td>
+                    <td>{{ box.height }}</td>
+                    <td>
+                        <input type="checkbox" class="user_favorites" value="{{ box.id }}" l="{{ box.length }}" w="{{ box.wide }}"  h="{{ box.height }}">
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+
+    {% endif %}
+
+{% endblock %}
+
+{% block footer %}
+    <a href="{{ path("app_home") }}" class="btn btn-back">Back</a>
+    <a href="#" id="confirm_presets" class="btn btn-back confirm_presets">Confirm</a>
+{% endblock %}
+
+
+{% block javascripts %}
+    <script src=" {{ asset("js/booth/user_settings.js") }} "></script>
+{% endblock %}

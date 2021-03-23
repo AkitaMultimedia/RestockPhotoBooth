@@ -1,0 +1,51 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block content %}
+
+    <p class="title">{{ state_name|capitalize }} PO</p>
+
+    {% if po_list is empty  %}
+
+        <div class="settings_container">
+            <p>No {{ state_name }} PO</p>
+        </div>
+
+    {% else %}
+        <table class="table" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr>
+                <td>PO</td>
+                <td>Number of lots</td>
+                <td>Actions</td>
+                </tr>
+            </thead>
+            <tbody>   
+            {% for p in po_list %}
+                <tr>
+                    <td>{{ p.number }}</td>
+                    <td>{{ p.lots|length }}</td>
+                    <td>
+                        {% if p.active == 1 %}
+                            <a href=" {{ path("admin_mark_done", {'id': p.id }) }} " class="btn btn-table-left">Mark as done</a>
+                        {% else %}
+                            COMPLETED
+                        {% endif %}
+                        <a href=" {{ path("admin_view_lots", {'po_number': p.number, 'state': state }) }} " class="btn btn-table-left">View lots</a>
+                        <a href=" {{ path("admin_get_csv", {'po_number': p.number, 'state': state }) }} " class="btn btn-table-left">Get CSV</a>
+                        <a href=" {{ path("admin_mail_csv", {'po_number': p.number, 'state': state }) }} " class="btn btn-table-left">Mail CSV</a>
+                    </td>
+                </tr>
+            {% endfor %}        
+            </tbody>
+        </table>
+    {% endif %}
+    <div class="footer">
+        <a href=" {{ path('admin_menu') }} " class="btn">Back to menu</a>
+    </div>
+
+{% endblock %} 
+
+{% block footer %}
+        <a href=" {{ path('admin_menu') }} " class="btn btn-back">Back</a>
+{% endblock %}
+

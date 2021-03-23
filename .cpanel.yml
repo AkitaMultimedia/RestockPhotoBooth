@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/uncxw7x9v5r8/public_html/photobooth.restockcrc.com
+    - - /bin/cp -R $DEPLOYPATH

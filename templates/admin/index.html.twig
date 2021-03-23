@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Interface{% endblock %}
+      
+{% block stylesheets %}
+     <link rel="stylesheet" href=" {{ asset("css/admin.css")}} ">
+{% endblock %}
+
+{% block header %}
+    <div class="header_left">ADMIN</div>
+    {% if vue is defined %}
+        <div class="header_right">{{ vue }}</div>
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+<div id="admin" class="vue_wrapper">
+    {% block content %}{% endblock %}
+</div>
+{% endblock %}
+
+
+
+
+

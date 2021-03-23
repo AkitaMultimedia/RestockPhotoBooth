@@ -1,0 +1,33 @@
+{% extends 'main/index.html.twig' %}
+
+{% block header %}
+    {% if app.user %}
+        <a id="logout" href="{{ path('app_logout') }}">LOG OUT</a>
+        <span>{{ app.user.username }}</span>     
+    {% else %}
+        <a id="logout" href="{{ path('app_login') }}">LOG IN</a>
+    {% endif %}
+
+{% endblock %}
+
+{% block body %}    
+    
+    <div class="flex_column_centered">
+        <h2 class="main_title">Restock Booth App</h2>
+            <a href=" {{ path("booth_start") }} " class="btn btn-option" id="btn_admin">Start</a>
+            <a href=" {{ path("user_settings") }} " class="btn btn-option" id="btn_admin">Settings</a>
+           {% if user_is_admin == 1 %}
+            <a href=" {{ path("admin_menu") }} " class="btn btn-option" id="btn_admin">Admin</a>
+           {% endif %}
+        <div>SYNC - Lots to upload: <span class="sync_icon">0</span></div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+         document.getElementById("vue_name").innerText = "Version 0.0.61";
+         let queue = testLocalStorage();
+         document.querySelector(".sync_icon").innetText = queue;
+    </script>
+{% endblock %}

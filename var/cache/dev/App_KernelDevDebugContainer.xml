@@ -4430,9 +4430,6 @@
       <call method="setSQLLogger">
         <argument type="service" id="doctrine.dbal.logger.chain.default"/>
       </call>
-      <call method="setSchemaAssetsFilter">
-        <argument type="service" id="doctrine.dbal.default_schema_asset_filter_manager"/>
-      </call>
     </service>
     <service id="doctrine.dbal.logger.profiling.default" class="Doctrine\DBAL\Logging\DebugStack"/>
     <service id="doctrine.dbal.logger.chain.default" class="Doctrine\DBAL\Logging\LoggerChain">
@@ -4440,10 +4437,6 @@
         <argument type="service" id="doctrine.dbal.logger"/>
         <argument type="service" id="doctrine.dbal.logger.profiling.default"/>
       </argument>
-    </service>
-    <service id="doctrine.dbal.default_regex_schema_filter" class="Doctrine\Bundle\DoctrineBundle\Dbal\RegexSchemaAssetFilter">
-      <tag name="doctrine.dbal.schema_filter" connection="default"/>
-      <argument>~^(migration_versions|table_1|table_2|table_3)$~</argument>
     </service>
     <service id="doctrine.dbal.default_connection.event_manager" class="Symfony\Bridge\Doctrine\ContainerAwareEventManager">
       <argument type="service" id=".service_locator.GGBjXDf"/>
@@ -4461,20 +4454,14 @@
     </service>
     <service id="doctrine.dbal.default_connection" class="Doctrine\DBAL\Connection" public="true">
       <argument type="collection">
-        <argument key="driver">pdo_mysql</argument>
-        <argument key="charset">utf8mb4</argument>
-        <argument key="unix_socket">/Applications/MAMP/tmp/mysql/mysql.sock</argument>
         <argument key="url">%env(resolve:DATABASE_URL)%</argument>
         <argument key="host">localhost</argument>
         <argument key="port">null</argument>
         <argument key="user">root</argument>
         <argument key="password">null</argument>
+        <argument key="driver">pdo_mysql</argument>
         <argument key="driverOptions" type="collection"/>
-        <argument key="serverVersion" type="string">5.7</argument>
-        <argument key="defaultTableOptions" type="collection">
-          <argument key="charset">utf8mb4</argument>
-          <argument key="collate">utf8mb4_unicode_ci</argument>
-        </argument>
+        <argument key="defaultTableOptions" type="collection"/>
       </argument>
       <argument type="service" id="doctrine.dbal.default_connection.configuration"/>
       <argument type="service" id="doctrine.dbal.default_connection.event_manager"/>
@@ -6362,11 +6349,6 @@
         <argument key="App\Repository\LotRepository" type="service" id="App\Repository\LotRepository"/>
         <argument key="App\Repository\PoRepository" type="service" id="App\Repository\PoRepository"/>
         <argument key="App\Repository\UsersRepository" type="service" id="App\Repository\UsersRepository"/>
-      </argument>
-    </service>
-    <service id="doctrine.dbal.default_schema_asset_filter_manager" class="Doctrine\Bundle\DoctrineBundle\Dbal\SchemaAssetsFilterManager">
-      <argument type="collection">
-        <argument type="service" id="doctrine.dbal.default_regex_schema_filter"/>
       </argument>
     </service>
     <service id="debug.security.voter.security.access.authenticated_voter" class="Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter">

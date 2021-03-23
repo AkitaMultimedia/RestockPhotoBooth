@@ -53,7 +53,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                     ],
                     'roles' => [
                         'fieldName' => 'roles',
-                        'type' => 'json',
+                        'type' => 'array',
                         'scale' => 0,
                         'length' => null,
                         'unique' => false,

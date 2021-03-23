@@ -66,10 +66,10 @@ class Po extends \App\Entity\Po implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Po' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Po' . "\0" . 'Number', '' . "\0" . 'App\\Entity\\Po' . "\0" . 'Active'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Po' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Po' . "\0" . 'Number', '' . "\0" . 'App\\Entity\\Po' . "\0" . 'Active', '' . "\0" . 'App\\Entity\\Po' . "\0" . 'lots'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Po' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Po' . "\0" . 'Number', '' . "\0" . 'App\\Entity\\Po' . "\0" . 'Active'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Po' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Po' . "\0" . 'Number', '' . "\0" . 'App\\Entity\\Po' . "\0" . 'Active', '' . "\0" . 'App\\Entity\\Po' . "\0" . 'lots'];
     }
 
     /**
@@ -233,6 +233,39 @@ class Po extends \App\Entity\Po implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setActive', [$Active]);
 
         return parent::setActive($Active);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getLots(): \Doctrine\Common\Collections\Collection
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLots', []);
+
+        return parent::getLots();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addLot(\App\Entity\Lot $lot): \App\Entity\Po
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addLot', [$lot]);
+
+        return parent::addLot($lot);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeLot(\App\Entity\Lot $lot): \App\Entity\Po
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeLot', [$lot]);
+
+        return parent::removeLot($lot);
     }
 
 }

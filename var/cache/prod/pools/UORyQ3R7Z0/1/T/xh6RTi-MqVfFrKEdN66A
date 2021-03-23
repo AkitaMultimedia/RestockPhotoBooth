@@ -82,6 +82,27 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                     'name' => 'po',
                 ],
             ],
+            'associationMappings' => [
+                [
+                    'lots' => [
+                        'fieldName' => 'lots',
+                        'mappedBy' => 'po',
+                        'targetEntity' => 'App\\Entity\\Lot',
+                        'cascade' => [],
+                        'orphanRemoval' => false,
+                        'fetch' => 2,
+                        'type' => 4,
+                        'inversedBy' => null,
+                        'isOwningSide' => false,
+                        'sourceEntity' => 'App\\Entity\\Po',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                    ],
+                ],
+            ],
             'idGenerator' => [
                 $o[1],
             ],

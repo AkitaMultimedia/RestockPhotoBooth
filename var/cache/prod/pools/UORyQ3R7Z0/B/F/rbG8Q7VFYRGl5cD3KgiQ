@@ -1,0 +1,176 @@
+<?php //%255BApp%255CEntity%255CLotData%2524CLASSMETADATA%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'App\\Entity\\LotData',
+            ],
+            'namespace' => [
+                'App\\Entity',
+            ],
+            'rootEntityName' => [
+                'App\\Entity\\LotData',
+            ],
+            'customRepositoryClassName' => [
+                'App\\Repository\\LotDataRepository',
+            ],
+            'identifier' => [
+                [
+                    'id',
+                ],
+            ],
+            'generatorType' => [
+                4,
+            ],
+            'fieldMappings' => [
+                [
+                    'id' => [
+                        'fieldName' => 'id',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'id' => true,
+                        'columnName' => 'id',
+                    ],
+                    'po' => [
+                        'fieldName' => 'po',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => 255,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'po',
+                    ],
+                    'lot' => [
+                        'fieldName' => 'lot',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => 255,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'lot',
+                    ],
+                    'quantity' => [
+                        'fieldName' => 'quantity',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'quantity',
+                    ],
+                    'weight' => [
+                        'fieldName' => 'weight',
+                        'type' => 'integer',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'weight',
+                    ],
+                    'created_at' => [
+                        'fieldName' => 'created_at',
+                        'type' => 'datetime',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'created_at',
+                    ],
+                    'user' => [
+                        'fieldName' => 'user',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => 255,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'user',
+                    ],
+                    'format' => [
+                        'fieldName' => 'format',
+                        'type' => 'string',
+                        'scale' => 0,
+                        'length' => 255,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'format',
+                    ],
+                    'done' => [
+                        'fieldName' => 'done',
+                        'type' => 'boolean',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'done',
+                    ],
+                    'photos' => [
+                        'fieldName' => 'photos',
+                        'type' => 'json',
+                        'scale' => 0,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => 0,
+                        'columnName' => 'photos',
+                    ],
+                ],
+            ],
+            'fieldNames' => [
+                [
+                    'id' => 'id',
+                    'po' => 'po',
+                    'lot' => 'lot',
+                    'quantity' => 'quantity',
+                    'weight' => 'weight',
+                    'created_at' => 'created_at',
+                    'user' => 'user',
+                    'format' => 'format',
+                    'done' => 'done',
+                    'photos' => 'photos',
+                ],
+            ],
+            'columnNames' => [
+                [
+                    'id' => 'id',
+                    'po' => 'po',
+                    'lot' => 'lot',
+                    'quantity' => 'quantity',
+                    'weight' => 'weight',
+                    'created_at' => 'created_at',
+                    'user' => 'user',
+                    'format' => 'format',
+                    'done' => 'done',
+                    'photos' => 'photos',
+                ],
+            ],
+            'table' => [
+                [
+                    'name' => 'lot_data',
+                ],
+            ],
+            'idGenerator' => [
+                $o[1],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+); }];

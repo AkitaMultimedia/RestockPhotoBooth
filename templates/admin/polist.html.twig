@@ -26,11 +26,11 @@
                     <td>{{ p.lots|length }}</td>
                     <td>
                         {% if p.active == 1 %}
-                            <a href=" {{ path("admin_mark_done", {'id': p.id }) }} " class="btn btn-table-left">Mark as done</a>
+                            <a href=" {{ path("admin_mark_done", {'po_number': p.number, 'state': state }) }} " class="btn btn-table-left">Mark as done</a>
                         {% else %}
                             COMPLETED
                         {% endif %}
-                        <a href=" {{ path("admin_view_lots", {'po_number': p.number, 'state': state }) }} " class="btn btn-table-left">View lots</a>
+                        <a href=" {{ path("admin_view_lots", {'id': p.id, 'state': state }) }} " class="btn btn-table-left">View lots</a>
                         <a href=" {{ path("admin_get_csv", {'po_number': p.number, 'state': state }) }} " class="btn btn-table-left">Get CSV</a>
                         <a href=" {{ path("admin_mail_csv", {'po_number': p.number, 'state': state }) }} " class="btn btn-table-left">Mail CSV</a>
                     </td>

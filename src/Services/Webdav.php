@@ -48,13 +48,19 @@ class Webdav
     /**
      * @return bool
     */
-    public function uploadFile($fileName, $fileContent, $subfolder=null):bool
+    public function uploadFile($fileName, $fileContent, $subfolder=null)
     {          
+        
         if ($subfolder) {
             $fileName = $subfolder."/".$fileName;
+            //$fileName = $subfolder."/file.txt";
         } 
+   
+        //$request = $this->client->request('PUT', $fileName, "New contents2");
         $request = $this->client->request('PUT', $fileName, $fileContent);
-        return $this->response($request);
+        
+       return $this->response($request);
+        //return $response;
     }
 
     /**

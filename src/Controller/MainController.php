@@ -12,10 +12,19 @@ use App\Repository\BoxSizePresetsRepository;
 
 class MainController extends AbstractController
 {
-    /**
-     * @Route("/", name="app_home")
+     /**
+     * @Route("/", name="home")
      */
-    public function index(): Response
+    public function index()
+    {
+        return $this->render("main/home.html.twig");
+    }
+    /**
+     * @Route("/boothmenu", name="booth_home")
+     */
+
+     // Temp: /
+    public function booth_home(): Response
     {
         // Check if a user is connected
         $userName = "";
@@ -47,10 +56,10 @@ class MainController extends AbstractController
     /**
      * @Route("/verifyLotExist/{lot}", name="verifyLotExist")
      */
-    public function verifyLotExist($lot, LotRepository $LotRepo, DataBaseHelper $helper): Response
+    public function verifyLotExist($lot, LotRepository $LotRepo): Response
     {
         $exist = $LotRepo->findBy(
-            ['lot' => $lot]
+            ['number' => $lot]
         );
 
         if ($exist) {

@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\UsersRepository;
+use App\Repository\UserRepository;
 use App\Repository\BoxSizePresetsRepository;
 use App\Repository\EmailsForDataRepository;
 use App\Entity\BoxSizePresets;
@@ -27,7 +27,7 @@ class SettingsController extends AbstractController
     /**
      * @Route("/", name="menu")
      */
-    public function settings(UsersRepository $UserRepository, BoxSizePresetsRepository $BoxRepo, EmailsForDataRepository $EmailsRepo, ConfigurationRepository $ConfigurationRepo): Response
+    public function settings(UserRepository $UserRepository, BoxSizePresetsRepository $BoxRepo, EmailsForDataRepository $EmailsRepo, ConfigurationRepository $ConfigurationRepo): Response
     {
         $dav_user_name = $ConfigurationRepo->findOneBy([
             'name' => 'dav_user_name'

@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Users;
+use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Form\ModifyUserFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,16 +19,16 @@ class RegistrationController extends AbstractController
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
-        $user = new Users();
+        $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
            
+           // dd($form);
             // encode the plain password    
             $user->setPassword(
                 $form->get('password')->getData()
-               
                 /*
                 $passwordEncoder->encodePassword(
                     $user,
@@ -37,9 +37,9 @@ class RegistrationController extends AbstractController
                */
             );
              
-
-            //$user->setRoles(["ROLE_USER"
-            //]);
+            // $roles = $form->get('roles')->getData();
+            // $roles = ["ROLE_ADMIN"];
+            // $user->setRoles($roles);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
@@ -56,7 +56,7 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/admin/modifyuser/{id}", name="admin_modify_user")
      */
-    public function modify(Request $request, Users $user): Response
+    public function modify(Request $request, User $user): Response
     {
 
         $form = $this->createForm(ModifyUserFormType::class, $user);
@@ -88,7 +88,7 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/admin/deleteuser/{id}", name="admin_delete_user")
      */
-    public function delete(Request $request, Users $user): Response
+    public function delete(Request $request, User $user): Response
     {
 
         $entityManager = $this->getDoctrine()->getManager();

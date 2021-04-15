@@ -54,6 +54,7 @@ function uploadBoothData2() {
 
         xhr.open("POST", uri, true);
         xhr.onreadystatechange = function() {
+
             if (this.readyState == 4 && this.status == 200) {
                 console.log(this.responseText);
                 if (this.responseText.includes("OkOk_")) {
@@ -92,6 +93,7 @@ function uploadBoothData() {
     xhr.open("POST", uri, true);
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
             if (this.responseText.includes("OkOk_")) {
                 callBackUploadBoothData(this.responseText);
             }
@@ -99,7 +101,7 @@ function uploadBoothData() {
     };
 
     fd.append('po', appData.po);
-    fd.append('lot', appData.code); // Envoi du code complet
+    fd.append('number', appData.code); // Envoi du code complet
     fd.append('nbfiles', appData.files.length); // Pour faciliter code serveur
 
 

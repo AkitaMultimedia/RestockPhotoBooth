@@ -56,7 +56,6 @@ input.onchange = function() {
 function displayAsImage(file) {
 
     var imgURL = URL.createObjectURL(file);
-    console.log(imgURL);
     var div = document.createElement('div');
     div.style.backgroundImage = "url('" + imgURL + "')";
     div.onload = function() {

@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\UsersRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,10 +13,10 @@ class SecurityController extends AbstractController
     /**
      * @Route("/login", name="app_login")
      */
-    public function login(AuthenticationUtils $authenticationUtils, UsersRepository $usersRepository): Response
+    public function login(AuthenticationUtils $authenticationUtils, UserRepository $userRepository): Response
     {
         if ($this->getUser()) {
-            return $this->redirectToRoute('target_path');
+            return $this->redirectToRoute('app_home');
         }
 
         // get the login error if there is one
@@ -25,8 +25,8 @@ class SecurityController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
 
         // Send the userlist
-        $users = $usersRepository->findAll();
-        
+        $users = $userRepository->findAll();
+
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername, 
             'error' => $error,

@@ -4,7 +4,7 @@
 
      <p class="title">LOTS FOR PO{{ po }}</p>
 
-    {% if lot_data is empty  %}
+    {% if lot is empty  %}
 
         <div class="settings_container">
             <p>No lots for PO {{ po }}</p>
@@ -21,20 +21,22 @@
                 </tr>
             </thead>
             <tbody>           
-                {% for lot in lot_data %}
+                {% for l in lot %}
                     <tr>
-                    <td>{{ lot.lot }}</td>
-                    <td>{{ lot.format }}</td>
-                    <td>{{ lot.weight }}</td>
+                    <td>{{ l.number }}</td>
+                    <td>{{ l.format }}</td>
+                    <td>{{ l.weight }}</td>
                     <td>
                     {% set nb_photos = 0 %}
-                    {% for photo in lot.photos %}
+                    {% for photo in l.photos %}
                         {%- if photo %}
                             {%- set nb_photos = nb_photos + 1 -%}
                         {%- endif %}
                     {% endfor %}
                         <span class="nb_pictures">{{ nb_photos }}</span>
-                        <a href="{{ path('admin_view_photos', {'lot': lot.lot, 'state': state }) }}" class="btn btn-table-left">View photos</a>                                    
+                        {% if nb_photos > 0 %}
+                            <a href="{{ path('admin_view_photos', {'id': l.id, 'state': state }) }}" class="btn btn-table-left">View photos</a>                                    
+                        {% endif %}
                     </td>
                 </tr>
                 {% endfor %}

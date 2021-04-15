@@ -10,7 +10,7 @@ use App\Repository\PoRepository;
 use App\Repository\LotRepository;
 use App\Repository\EmailsForDataRepository;
 use App\Services\SendMail;
-use App\Services\CreateCSV;
+use App\Services\PoCSV;
 use App\Services\Webdav;
 use App\Entity\Po;
 
@@ -33,7 +33,7 @@ class AdminController extends AbstractController
     public function polist(PoRepository $PoRepository, $active): Response
     {
         // Display list of PO - active or inactive
-        $poList = $PoRepository->findBy(['Active' => $active]);
+        $poList = $PoRepository->findBy(['active' => $active]);
 
         $state_name = "archived";
         if ($active == true) {
@@ -51,36 +51,23 @@ class AdminController extends AbstractController
     /* IMPORTANT : All settings are managed by the SettingsController */
 
     /**
-     * @Route("/done/{id}", name="mark_done")
+     * @Route("/done/{po_number}", name="mark_done")
      */
-    public function markAsDone(LotRepository $LotsRepo, EmailsForDataRepository $emailsRepo, CreateCSV $csv, SendMail $mailer, Po $po): RedirectResponse
+    public function markAsDone(PoCSV $PoCSV, PoRepository $PoRepository, $po_number): RedirectResponse
     {
 
         // Mettre le Po Actif = FALSE dans DB
+        $po = $PoRepository->findOneBy([
+            'number' => $po_number
+        ]);
         $po->setActive(false);
         $em = $this->getDoctrine()->getManager();
         $em->persist($po);
         $em->flush();
 
-        // Récupérer le # du PO et récupérer tous les lots de ce PO
         $po_number = $po->getNumber();
-        
-        $lots_data = $LotsRepo->findBy([
-            "po" => $po_number
-        ]);
-
-        // Send CVS by email to admins
-        $emails = $emailsRepo->findBy(
-            ['active' => true]
-        );
-
-        $attachement = $csv->convertLotsToDataForCSV($lots_data);
-        $attachementName = "PO_".$po_number.".csv";
-
-        foreach ($emails as $key) {
-            $email = $key->getEmail();
-            $mailer->sendMail($email, "PO ".$po_number, "PO ".$po_number, $attachement, $attachementName);
-        }  
+         // Envoi du fichier CSV
+        $PoCSV->generate($po_number, 'mail');   
 
         return $this->redirectToRoute('admin_polist', [
             'active' => 1
@@ -88,42 +75,37 @@ class AdminController extends AbstractController
     }   
 
      /**
-     * @Route("/lots/{po_number}&{state}", name="view_lots")
+     * @Route("/lots/{id}/{state}", name="view_lots")
      */
-    public function viewLots(LotRepository $LotRepository, $po_number, $state): Response
+    public function viewLots(PoRepository $poRepository, $id, $state): Response
     {
-        $lot_data = $LotRepository->findBy(['po' => $po_number]);
+        // Je reçois le id du lot 
+        $po = $poRepository->findOneBy(['id' => $id]);
 
+        $lots = $po->getLots();
+ 
         return $this->render('admin/lotlist.html.twig', [
-            'lot_data' => $lot_data,
-            'po' => $po_number,
+            'lot' => $lots,
+            'po' => $po->getNumber(),
             'state' => $state
         ]);
     }    
   
     /**
-     * @Route("/lots/photos/{lot}&{state}", name="view_photos")
+     * @Route("/lots/photos/{id}/{state}", name="view_photos")
      */
-    public function viewPhotos(Webdav $dav, LotRepository $LotRepo, $lot, $state): Response
+    public function viewPhotos(LotRepository $LotRepository, $id, $state): Response
     {
 
-        $lot_data = $LotRepo->findOneBy(['lot' => $lot]);
-        $data = $lot_data->getPhotos();
-        $po = $lot_data->getPo();
-
-        $photos = [];
-        foreach ($data as $photo) {
-            if ($photo) {
-                $request = $dav->displayImage($po, $photo);
-                array_push($photos, $request);
-            } else {
-                array_push($photos, "");
-            }
-        }
-
+        $lot = $LotRepository->findOneBy(['id' => $id]);
+        $photos = $lot->getPhotos();
+        $po_number = $lot->getPo()->getNumber();
+       
         return $this->render('admin/lot_images.html.twig', [
-            'lot_data' => $lot_data,
+            'id' => $id,
+            'lot' => $lot,
             'photos' => $photos,
+            'po_number' => $po_number,
             'state' => $state
         ]);
     }   
@@ -131,9 +113,9 @@ class AdminController extends AbstractController
     /**
      * @Route("/delete_photo/{id}/{name}/{state}", name="delete_photo")
      */
-    public function deletePhoto(LotRepository $LotRepo, Webdav $dav, $id, $name, $state): Response
+    public function deletePhoto(LotRepository $LotRepository, $id, $name, $state): Response
     {
-        $lot = $LotRepo->findOneBy(['id' => $id]);
+        $lot = $LotRepository->findOneBy(['id' => $id]);
 
         $ls_photos = $lot->getPhotos();
         $posi_photo = array_search($name, $ls_photos);
@@ -145,10 +127,15 @@ class AdminController extends AbstractController
         $em->flush();
 
         // Delete photo
-        $po = $lot->getPo();
-        $dav->deleteFile($name, $po);
+        $po_number = $lot->getPo()->getNumber();
+        $pathFile = "uploads/photos/".$po_number."/".$name;
+       
+        if (file_exists($pathFile)) {
+            unlink($pathFile);
+        }
 
         return $this->redirectToRoute('admin_view_photos', [
+            'id' => $lot->getId(),
             'lot' => $lot->getNumber(),
             'state' => $state
         ]);
@@ -157,28 +144,11 @@ class AdminController extends AbstractController
     /**
      * @Route("/mailcsv/{po_number}/{state}", name="mail_csv")
      */
-    public function mailCsv(CreateCSV $csv, SendMail $mailer, EmailsForDataRepository $emailsRepo, LotRepository $LotsRepo, $po_number, $state): Response
+    public function mail_csv(PoCSV $PoCSV, $po_number, $state): Response
     {
 
-        $emails = $emailsRepo->findBy(
-            ['active' => true]
-        );
+        $PoCSV->generate($po_number, 'mail');
 
-        $lots_data = $LotsRepo->findBy([
-            "po" => $po_number
-        ]);
-
-        $attachement = $csv->convertLotsToDataForCSV($lots_data);
-        $attachementName = "PO_".$po_number.".csv";
-        
-        $fp = fopen('php://temp', 'w');
-        fwrite($fp, $attachement);
- 
-        foreach ($emails as $key) {
-            $email = $key->getEmail();
-            $mailer->sendMail($email, "PO ".$po_number, "PO ".$po_number, $fp, $attachementName);
-        }  
-    
         return $this->redirectToRoute('admin_polist', [
             'active' => $state
         ]);
@@ -188,15 +158,10 @@ class AdminController extends AbstractController
     /**
      * @Route("/getcsv/{po_number}", name="get_csv")
      */
-    public function getCsv(CreateCSV $csv, LotRepository $LotsRepo, $po_number)
+    public function get_csv(PoCSV $PoCSV, $po_number)
     {
-        $lots_data = $LotsRepo->findBy([
-            "po" => $po_number
-        ]);
 
-        $response = $csv->convertLotsToDataForCSV($lots_data);
-
-        $fileName = "PO_".$po_number.".csv";
+        $response = $PoCSV->generate($po_number, 'browser');
 
         return new Response(
             $response,
@@ -205,10 +170,10 @@ class AdminController extends AbstractController
           //Définit le contenu de la requête en tant que fichier Excel
               'Content-Type' => 'application/vnd.ms-excel',
           //On indique que le fichier sera en attachment donc ouverture de boite de téléchargement ainsi que le nom du fichier
-              "Content-disposition" => "attachment; filename=".$fileName.".csv"
+              "Content-disposition" => "attachment; filename=PO_".$po_number.".csv"
            ]
         );
-        
+      
     }  
 
 }

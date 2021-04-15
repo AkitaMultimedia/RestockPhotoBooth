@@ -29,9 +29,6 @@ class __TwigTemplate_11dd283b94b5e7079926d48f23f7fb2422b92e64b128e17e22017a52a00
         $this->blocks = [
             'stylesheets' => [$this, 'block_stylesheets'],
             'title' => [$this, 'block_title'],
-            'header' => [$this, 'block_header'],
-            'body' => [$this, 'block_body'],
-            'footer' => [$this, 'block_footer'],
             'javascripts' => [$this, 'block_javascripts'],
         ];
     }
@@ -47,81 +44,78 @@ class __TwigTemplate_11dd283b94b5e7079926d48f23f7fb2422b92e64b128e17e22017a52a00
 
         // line 1
         echo "<!DOCTYPE html>
-<html lang=\"en\">
-    <head>
-        <meta charset=\"UTF-8\">
-        <meta name=\"viewport\" content=\"width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1\">
-        <meta name=\"theme-color\" content=\"#476a30\">
-        <meta name=\"mobile-web-app-capable\" content=\"yes\">
-        <meta name=\"apple-mobile-web-app-capable\" content=\"yes\">
+<html lang=\"fr\">
+\t<head>
+\t\t<meta charset=\"UTF-8\">
+\t\t<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">
+\t\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
 
-        <link rel=\"stylesheet\" href=\" ";
+\t\t<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css\" integrity=\"sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==\" crossorigin=\"anonymous\"/>
+\t\t<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl\" crossorigin=\"anonymous\">
+\t\t<link rel=\"stylesheet\" href=\"";
         // line 10
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("css/styles.css"), "html", null, true);
-        echo " \">
-        <link rel=\"stylesheet\" href=\" ";
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("css/main/sidebar.css"), "html", null, true);
+        echo "\">
+\t\t<link rel=\"stylesheet\" href=\"";
         // line 11
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("css/display.css"), "html", null, true);
-        echo " \">
-        <link rel=\"stylesheet\" href=\" ";
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("css/main/header.css"), "html", null, true);
+        echo "\">
+        ";
         // line 12
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("css/buttons.css"), "html", null, true);
-        echo " \">
-        
-        <link rel=\"manifest\" href=\"";
-        // line 14
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("manifest.json?v=3"), "html", null, true);
-        echo "\"> 
-
-        ";
-        // line 16
         $this->displayBlock('stylesheets', $context, $blocks);
-        // line 17
+        // line 13
         echo "
-        <!--
-        <link rel=\"manifest\" href=\"manifest.json\">
-        -->
-        <title>";
-        // line 21
+\t\t";
+        // line 14
         $this->displayBlock('title', $context, $blocks);
-        echo "</title>
+        // line 17
+        echo "\t</head>
+\t<body>
 
-    </head>
-    <body>
-        <div class=\"header\">
-            ";
-        // line 26
-        $this->displayBlock('header', $context, $blocks);
-        // line 27
-        echo "        </div>
-        <div class=\"container\">
-            ";
+\t\t<div class=\"container-fluid\">
+            <div id=\"header\" class=\"row\">
+                <div class=\"col-2\" id=\"main-logo\">
+                    <div class=\"h-100 w-100 d-flex justify-content-end align-items-center\">
+                        <img src=\"";
+        // line 24
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("img/logo_restock.jpg"), "html", null, true);
+        echo "\" class=\"img-fluid\" alt=\"\">                    
+                    </div>
+                </div>
+                <div id=\"topbar\" class=\"col-10\">
+\t\t\t        ";
+        // line 28
+        $this->loadTemplate("main/topbar.html.twig", "base.html.twig", 28)->display($context);
         // line 29
-        $this->displayBlock('body', $context, $blocks);
-        // line 30
-        echo "        </div>
-        <div class=\"footer\">
-            ";
-        // line 32
-        $this->displayBlock('footer', $context, $blocks);
+        echo "                </div>
+            </div>
+\t\t\t<div id=\"main\" class=\"row\">
+                <div class=\"col-2 g-0\" id=\"sidebar\">
+                    ";
         // line 33
-        echo "        </div>        
-        <script src=\"https://code.jquery.com/jquery-3.5.1.min.js\" integrity=\"sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=\" crossorigin=\"anonymous\"></script>
-        <!--
-        ";
-        // line 37
-        echo "        -->
-        <script src=\" ";
-        // line 38
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("js/global.js"), "html", null, true);
-        echo " \"></script>
-        ";
-        // line 39
-        $this->displayBlock('javascripts', $context, $blocks);
-        // line 40
-        echo "
-    </body>
+        $this->loadTemplate("main/sidebar.html.twig", "base.html.twig", 33)->display($context);
+        // line 34
+        echo "                </div>
+\t\t\t\t<div id=\"content\" class=\"col-10\">
+\t\t\t\t\tMain content
+\t\t\t\t</div>
+\t\t\t</div>
+\t\t</div>
 
+\t\t";
+        // line 44
+        echo "
+
+\t\t<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0\" crossorigin=\"anonymous\"></script>
+\t\t<script src=\"";
+        // line 47
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("js/main/sidebar.js"), "html", null, true);
+        echo "\"></script>
+\t\t";
+        // line 48
+        $this->displayBlock('javascripts', $context, $blocks);
+        // line 49
+        echo "\t</body>
 </html>
 ";
         
@@ -132,7 +126,7 @@ class __TwigTemplate_11dd283b94b5e7079926d48f23f7fb2422b92e64b128e17e22017a52a00
 
     }
 
-    // line 16
+    // line 12
     public function block_stylesheets($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -150,7 +144,7 @@ class __TwigTemplate_11dd283b94b5e7079926d48f23f7fb2422b92e64b128e17e22017a52a00
 
     }
 
-    // line 21
+    // line 14
     public function block_title($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -160,7 +154,9 @@ class __TwigTemplate_11dd283b94b5e7079926d48f23f7fb2422b92e64b128e17e22017a52a00
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
 
-        echo "Restock App";
+        // line 15
+        echo "\t\t\t<title>Restock Management</title>
+\t\t";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -169,61 +165,7 @@ class __TwigTemplate_11dd283b94b5e7079926d48f23f7fb2422b92e64b128e17e22017a52a00
 
     }
 
-    // line 26
-    public function block_header($context, array $blocks = [])
-    {
-        $macros = $this->macros;
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "header"));
-
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "header"));
-
-        
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
-
-        
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
-
-    }
-
-    // line 29
-    public function block_body($context, array $blocks = [])
-    {
-        $macros = $this->macros;
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
-
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
-
-        
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
-
-        
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
-
-    }
-
-    // line 32
-    public function block_footer($context, array $blocks = [])
-    {
-        $macros = $this->macros;
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "footer"));
-
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "footer"));
-
-        
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
-
-        
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
-
-    }
-
-    // line 39
+    // line 48
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -253,53 +195,60 @@ class __TwigTemplate_11dd283b94b5e7079926d48f23f7fb2422b92e64b128e17e22017a52a00
 
     public function getDebugInfo()
     {
-        return array (  227 => 39,  209 => 32,  191 => 29,  173 => 26,  154 => 21,  136 => 16,  122 => 40,  120 => 39,  116 => 38,  113 => 37,  108 => 33,  106 => 32,  102 => 30,  100 => 29,  96 => 27,  94 => 26,  86 => 21,  80 => 17,  78 => 16,  73 => 14,  68 => 12,  64 => 11,  60 => 10,  49 => 1,);
+        return array (  169 => 48,  158 => 15,  148 => 14,  130 => 12,  118 => 49,  116 => 48,  112 => 47,  107 => 44,  98 => 34,  96 => 33,  90 => 29,  88 => 28,  81 => 24,  72 => 17,  70 => 14,  67 => 13,  65 => 12,  61 => 11,  57 => 10,  46 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("<!DOCTYPE html>
-<html lang=\"en\">
-    <head>
-        <meta charset=\"UTF-8\">
-        <meta name=\"viewport\" content=\"width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1\">
-        <meta name=\"theme-color\" content=\"#476a30\">
-        <meta name=\"mobile-web-app-capable\" content=\"yes\">
-        <meta name=\"apple-mobile-web-app-capable\" content=\"yes\">
+<html lang=\"fr\">
+\t<head>
+\t\t<meta charset=\"UTF-8\">
+\t\t<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">
+\t\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
 
-        <link rel=\"stylesheet\" href=\" {{ asset(\"css/styles.css\")}} \">
-        <link rel=\"stylesheet\" href=\" {{ asset(\"css/display.css\")}} \">
-        <link rel=\"stylesheet\" href=\" {{ asset(\"css/buttons.css\")}} \">
-        
-        <link rel=\"manifest\" href=\"{{ asset(\"manifest.json?v=3\")}}\"> 
-
+\t\t<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css\" integrity=\"sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==\" crossorigin=\"anonymous\"/>
+\t\t<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl\" crossorigin=\"anonymous\">
+\t\t<link rel=\"stylesheet\" href=\"{{asset('css/main/sidebar.css')}}\">
+\t\t<link rel=\"stylesheet\" href=\"{{asset('css/main/header.css')}}\">
         {% block stylesheets %}{% endblock %}
 
-        <!--
-        <link rel=\"manifest\" href=\"manifest.json\">
-        -->
-        <title>{% block title %}Restock App{% endblock %}</title>
+\t\t{% block title %}
+\t\t\t<title>Restock Management</title>
+\t\t{% endblock %}
+\t</head>
+\t<body>
 
-    </head>
-    <body>
-        <div class=\"header\">
-            {% block header %}{% endblock %}
-        </div>
-        <div class=\"container\">
-            {% block body %}{% endblock %}
-        </div>
-        <div class=\"footer\">
-            {% block footer %}{% endblock %}
-        </div>        
-        <script src=\"https://code.jquery.com/jquery-3.5.1.min.js\" integrity=\"sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=\" crossorigin=\"anonymous\"></script>
-        <!--
-        {# <script src=\" {{ asset(\"js/jquery.mobile-1.4.5.min.js\") }} \"></script> #}
-        -->
-        <script src=\" {{ asset(\"js/global.js\") }} \"></script>
-        {% block javascripts %}{% endblock %}
+\t\t<div class=\"container-fluid\">
+            <div id=\"header\" class=\"row\">
+                <div class=\"col-2\" id=\"main-logo\">
+                    <div class=\"h-100 w-100 d-flex justify-content-end align-items-center\">
+                        <img src=\"{{asset('img/logo_restock.jpg')}}\" class=\"img-fluid\" alt=\"\">                    
+                    </div>
+                </div>
+                <div id=\"topbar\" class=\"col-10\">
+\t\t\t        {% include \"main/topbar.html.twig\" %}
+                </div>
+            </div>
+\t\t\t<div id=\"main\" class=\"row\">
+                <div class=\"col-2 g-0\" id=\"sidebar\">
+                    {% include \"main/sidebar.html.twig\" %}
+                </div>
+\t\t\t\t<div id=\"content\" class=\"col-10\">
+\t\t\t\t\tMain content
+\t\t\t\t</div>
+\t\t\t</div>
+\t\t</div>
 
-    </body>
+\t\t{# <a class=\"btn btn-primary\" data-bs-toggle=\"collapse\" href=\"#collapseExample\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseExample\">
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tLink with href
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a> #}
 
+
+\t\t<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0\" crossorigin=\"anonymous\"></script>
+\t\t<script src=\"{{asset('js/main/sidebar.js')}}\"></script>
+\t\t{% block javascripts %}{% endblock %}
+\t</body>
 </html>
 ", "base.html.twig", "/Users/sebastiendumont/Documents/Projets/restock/restockApp/templates/base.html.twig");
     }

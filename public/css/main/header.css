@@ -1,0 +1,22 @@
+#header {
+    position: sticky;
+    height: 50px;
+    background-color: #444;
+    color: #ccc;
+    z-index: 50;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+#main-logo {
+    background-color: #fff;
+    padding: 0 20px;
+}
+
+#connected-user-name {
+    padding: 0 15px;
+}
+
+#log-out {
+    text-transform: uppercase;
+    padding-left: 25px;
+}

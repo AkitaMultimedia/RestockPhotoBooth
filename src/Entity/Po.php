@@ -22,12 +22,12 @@ class Po
     /**
      * @ORM\Column(type="string", length=20)
      */
-    private $Number;
+    private $number;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $Active;
+    private $active;
 
     /**
      * @ORM\OneToMany(targetEntity=Lot::class, mappedBy="po")
@@ -46,24 +46,24 @@ class Po
 
     public function getNumber(): ?string
     {
-        return $this->Number;
+        return $this->number;
     }
 
-    public function setNumber(string $Number): self
+    public function setNumber(string $number): self
     {
-        $this->Number = $Number;
+        $this->number = $number;
 
         return $this;
     }
 
     public function getActive(): ?bool
     {
-        return $this->Active;
+        return $this->active;
     }
 
-    public function setActive(bool $Active): self
+    public function setActive(bool $active): self
     {
-        $this->Active = $Active;
+        $this->active = $active;
 
         return $this;
     }

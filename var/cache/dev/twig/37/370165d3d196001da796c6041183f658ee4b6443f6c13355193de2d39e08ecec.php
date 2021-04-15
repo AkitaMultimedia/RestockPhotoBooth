@@ -68,7 +68,7 @@ class __TwigTemplate_5cbf85fc7adb5a7e7e46cfb270729368a4cacad0fc9e4af1087a0831d21
         // line 22
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("img/logo_restock.jpg"), "html", null, true);
         echo "\" alt=\"\">
-\t\t\t\t<h1 class=\"h3 mb-3 fw-normal\">Veuillez vous connecter.</h1>
+\t\t\t\t<h1 class=\"h3 mb-3 fw-normal\">TEST Veuillez vous connecter.</h1>
 
 \t\t\t\t<div class=\"form-floating\">
 \t\t\t\t\t<input type=\"email\" class=\"form-control\" id=\"floatingInput\" placeholder=\"name@example.com\">
@@ -135,7 +135,7 @@ class __TwigTemplate_5cbf85fc7adb5a7e7e46cfb270729368a4cacad0fc9e4af1087a0831d21
 \t\t<main class=\"form-signin\">
 \t\t\t<form>
 \t\t\t\t<img class=\"mb-4\" src=\"{{asset('img/logo_restock.jpg')}}\" alt=\"\">
-\t\t\t\t<h1 class=\"h3 mb-3 fw-normal\">Veuillez vous connecter.</h1>
+\t\t\t\t<h1 class=\"h3 mb-3 fw-normal\">TEST Veuillez vous connecter.</h1>
 
 \t\t\t\t<div class=\"form-floating\">
 \t\t\t\t\t<input type=\"email\" class=\"form-control\" id=\"floatingInput\" placeholder=\"name@example.com\">
